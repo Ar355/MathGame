@@ -28,7 +28,7 @@ while (player1.alive? && player2.alive?) do
     puts 'Seriously? No!'
     puts "#{player1.name}: #{player1.lives}/3 vs #{player2.name}: #{player2.lives}/3"
   end
-  count = (count + 1)
+  count = (count + 1) % 2
 end 
 
 if (player1.lives == 0)
