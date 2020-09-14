@@ -1,19 +1,20 @@
 require "./players"
 require "./question"
 
-  
+
 puts "Welcome to Ruby Math Game! This game requires two players."
 puts "Enter Player 1's name"
 player1_name = gets.chomp
 puts "Enter Player 2's name"
 player2_name = gets.chomp
-
+#set the name for the players from the gets method
 player1 = Players.new(player1_name)
 player2 = Players.new(player2_name)
-
+#initilize a varialbe to swithch between players
 count = 0   
-
-while (player1.alive? && player2.alive?) do 
+#lop as long as player alive > 0 => is true
+while (player1.alive? && player2.alive?) do
+  # if count is odd playr1 if count is even payer2 
   player = (count == 0) ? player1 : player2
   puts '----- NEW TURN -----'
   question = Questions.new
@@ -24,13 +25,15 @@ while (player1.alive? && player2.alive?) do
     puts 'YES! You are correct.'
     puts "#{player1.name}: #{player1.lives}/3 vs #{player2.name}: #{player2.lives}/3"       
   else 
+    #reduce lives of the player
     player.lives -= 1
     puts 'Seriously? No!'
     puts "#{player1.name}: #{player1.lives}/3 vs #{player2.name}: #{player2.lives}/3"
   end
+  #switch player odd/even
   count = (count + 1) % 2
 end 
-
+#end game, calculate wins based on the lives remain
 if (player1.lives == 0)
   puts "#{player2.name} wins with a score of #{player2.lives}/3"
   puts '----- GAME OVER -----'
